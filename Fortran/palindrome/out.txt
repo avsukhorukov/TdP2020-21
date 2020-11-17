@@ -1,0 +1,2 @@
+ Enter an integer number
+ The number is a palindrome.

@@ -1,0 +1,5 @@
+9  ! number of employees n
+3  ! number of categories c
+10500  16140  22300  15960  14150  12180  13230  15760  31000  ! salaries
+1  2  3  2  1  1  1  2  3  ! categories
+5  4  2  ! category increment in %

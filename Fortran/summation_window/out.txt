@@ -1,0 +1,5 @@
+How many floating-point numbers?
+What is the window width?
+Read 20 numbers:
+The maximum sum 43.0200043 is from the following numbers:
+7.8699999  8.6000004  9.2500000  8.8999996  8.3999996

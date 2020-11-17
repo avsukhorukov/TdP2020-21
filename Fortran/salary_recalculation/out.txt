@@ -1,0 +1,8 @@
+The number of employees is
+The number of categories is
+Salaries of each empoyee are
+Categories of each empoyee are
+Salary increase in each category is
+Current cost: 151220.00000
+New cost: 156703.40625
+Increase: 5483.40625

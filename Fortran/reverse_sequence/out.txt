@@ -1,0 +1,4 @@
+ Sequence size?
+ Enter            5  integers:
+ Reversed sequence:
+          45          98          78          56          34
