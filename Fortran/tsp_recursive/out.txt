@@ -1,0 +1,4 @@
+How many towns?
+Distances between the towns are
+The shortest distance 721 is for route:
+1  2  3  5  4

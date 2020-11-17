@@ -1,0 +1,8 @@
+The number is
+123
+132
+213
+231
+321
+312
+6 permutations
