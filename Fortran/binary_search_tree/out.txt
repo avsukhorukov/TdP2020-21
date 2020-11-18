@@ -1,0 +1,22 @@
+2
+3
+4
+5
+6
+7
+15
+20
+30
+The size of root is 9
+The height of root is 4
+The height of root%left is 3
+The height of root%right is 3
+2
+3
+4
+5
+6
+7
+20
+30
+ F
