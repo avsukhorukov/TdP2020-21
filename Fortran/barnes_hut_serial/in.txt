@@ -1,0 +1,37 @@
+0.001               ! integration step                                Angel test
+0.1                 ! time lap
+100                 ! total integration time
+3                   ! number of bodies
+1.0   0.9700436  -0.24308753  0.0   0.466203685   0.43236573  0.0   ! m x y z vx vy vz
+1.0  -0.9700436   0.24308753  0.0   0.466203685   0.43236573  0.0
+1.0   0.0         0.0         0.0  -0.93249737   -0.86473146  0.0
+
+
+1.0e-4                ! integration step tau, in years         Solar System Test
+3.0e-1                ! time lap, in years
+50.00                 ! total integration time, in years
+5                     ! number of bodies
+1.0000e+00   0.0000e+00  0.0000e+00  0.0000e+00   0.0000e+00   0.0000e+00  0.0000e+00 ! Sun
+1.6500e-07   0.3870e+00  0.0000e+00  0.0000e+00   0.0000e+00   1.6075e+00  0.0000e+00 ! Mercury
+2.4470e-06   0.7200e+00  0.0000e+00  0.0000e+00   0.0000e+00   1.1785e+00  0.0000e+00 ! Venus
+3.0020e-06   1.0000e+00  0.0000e+00  0.0000e+00   0.0000e+00   1.0000e+00  0.0000e+00 ! Earth
+3.2100e-07   1.5240e+00  0.0000e+00  0.0000e+00   0.0000e+00   0.8100e+00  0.0000e+00 ! Mars
+
+
+1.0e-4                ! integration step                          A-B-C-D-E test
+1.0e-1                ! time lap
+5.00                  ! total integration time
+5                     ! number of bodies
+1.0e+00   0.0e+00  0.0e+00  0.0e+00   0.0e+00  0.0e+00  0.0e+00 ! a
+2.0e+00   8.0e+00  0.0e+00  0.0e+00   0.0e+00  0.0e+00  0.0e+00 ! b
+3.0e+00   4.0e+00  4.0e+00  0.0e+00   0.0e+00  0.0e+00  0.0e+00 ! c
+4.0e+00   1.0e+00  5.0e+00  0.0e+00   0.0e+00  0.0e+00  0.0e+00 ! d
+5.0e+00   3.0e+00  8.0e+00  0.0e+00   0.0e+00  0.0e+00  0.0e+00 ! e
+
+
+1.0e-4                ! time step                                   2-body orbit
+1.0e-1                ! time lap
+20.00                 ! total integration time
+2                     ! number of bodies
+1.0e+00   0.0e+00  0.0e+00  0.0e+00   -0.297301779   0.297301779  0.0e+00 ! a
+1.0e+00   2.0e+00  2.0e+00  0.0e+00    0.297301779  -0.297301779  0.0e+00 ! b
