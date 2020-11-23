@@ -1,13 +1,11 @@
-! 6.1.2 Trapezoidal rule integration with I/O.
+! 7.2.2 Trapezoidal rule integral with I/O.
 !
-! Compile and run:
-! $ mpifort -O0 -Wall -Wextra -Wpedantic -fcheck=all -fbacktrace trapezoidal_p2p.f90
+! $ mpifort -g -O0 -Wall -Wextra -Wpedantic -fcheck=all -fbacktrace trapezoidal_all.f90
 ! $ mpirun -np 4 --oversubscribe ./a.out
-program trapezoidal_p2p
+program trapezoidal_all
     use mpi_f08
     implicit none
-    integer :: my_rank, n_ranks, r, root
-    type(MPI_Status) :: status
+    integer :: my_rank, n_ranks
     type(MPI_Comm) :: comm = MPI_COMM_WORLD
     real :: a, b, a_r, b_r, integral, total, step
     integer :: m, m_r
@@ -16,24 +14,13 @@ program trapezoidal_p2p
     call MPI_Comm_size(comm, n_ranks)
     call MPI_Comm_rank(comm, my_rank)
 
-    root = 0
-
-    ! a = 1.0e-3
-    ! b = 1.0
-    ! n = 1024
-    if (my_rank == root) then
-        print *, "Enter the interval [a, b] and the number of steps m:"
+    if (my_rank == 0) then
+        print '(a)', "Enter the interval [a, b] and the number of steps m (1.0e-3, 1.0, 1024):"
         read *, a, b, m
-        do r = 1, n_ranks - 1
-            call MPI_Send(a, 1, MPI_REAL,    r, 0, comm)
-            call MPI_Send(b, 1, MPI_REAL,    r, 0, comm)
-            call MPI_Send(m, 1, MPI_INTEGER, r, 0, comm)
-        end do
-    else ! my_rank /= root
-        call MPI_Recv(a, 1, MPI_REAL,    root, 0, comm, status)
-        call MPI_Recv(b, 1, MPI_REAL,    root, 0, comm, status)
-        call MPI_Recv(m, 1, MPI_INTEGER, root, 0, comm, status)
     end if
+    call MPI_Bcast(a, 1, MPI_REAL, 0, comm)
+    call MPI_Bcast(b, 1, MPI_REAL, 0, comm)
+    call MPI_Bcast(m, 1, MPI_INTEGER, 0, comm)
 
     step = (b - a) / m
     m_r  = m / n_ranks
@@ -42,14 +29,9 @@ program trapezoidal_p2p
     b_r = a_r +           m_r * step
     integral = trap_integral(a_r, b_r, m_r)
 
-    if (my_rank /= root) then
-        call MPI_Send(integral, 1, MPI_REAL, root, 0, comm)
-    else ! my_rank == root
-        total = integral
-        do r = 1, n_ranks - 1
-            call MPI_Recv(integral, 1, MPI_REAL, r, 0, comm, status)
-            total = total + integral
-        end do
+    call MPI_Reduce(integral, total, 1, MPI_REAL, MPI_SUM, 0, comm)
+
+    if (my_rank == 0) then
         print '(a, i0, 3(a, es12.6))', &
             "With ", m, " trapezoids the integral from ", a, " to ", b, " is ", total
     end if
@@ -62,7 +44,7 @@ contains
         real :: func
         real, intent(in) :: x
 
-        func = sin(1.0 / x)
+        func = sin(1.0 / x) ! strongly oscillating, needs many intervals
         return
     end function func
     !---------------------------------------------------------------------------
@@ -81,7 +63,7 @@ contains
             x = x + dx
             trap_integral = trap_integral + func(x)
         end do
-        trap_integral = trap_integral * dx
+        trap_integral = trap_integral * step
         return
     end function trap_integral
-end program trapezoidal_p2p
+end program trapezoidal_all
