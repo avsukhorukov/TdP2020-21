@@ -4,7 +4,7 @@ module parallel_mod
     integer :: n_ranks
     integer :: my_rank
     integer, parameter :: root_rank = 0
-    type(MPI_Comm)     :: comm = MPI_COMM_WORLD
+    type(MPI_Comm)     :: comm
     type(MPI_Datatype) :: body_t    ! Entire structure
     type(MPI_Datatype) :: body_r_t  ! Only r component
     integer :: first = -1 ! Local body indices, created in topology.
@@ -15,6 +15,7 @@ contains
     subroutine init_parallel()
         implicit none
         call MPI_Init()
+        comm = MPI_COMM_WORLD
         call MPI_Comm_size(comm, n_ranks)
         call MPI_Comm_rank(comm, my_rank)
     end subroutine init_parallel

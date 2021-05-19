@@ -4,12 +4,13 @@ program scatterv
     use mpi_f08
     implicit none
     integer :: my_rank, n_ranks, root
-    type(MPI_Comm) :: comm = MPI_COMM_WORLD
+    type(MPI_Comm) :: comm
     integer :: s, i, r, q, displacement, count
     integer, allocatable :: rbuf(:), sbuf(:)
     integer, allocatable :: counts(:), displacements(:)
 
     call MPI_Init()
+    comm = MPI_COMM_WORLD
     call MPI_Comm_size(comm, n_ranks)
     call MPI_Comm_rank(comm, my_rank)
 

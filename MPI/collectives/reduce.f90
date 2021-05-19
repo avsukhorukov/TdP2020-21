@@ -3,11 +3,12 @@ program reduce
     use mpi_f08
     implicit none
     integer :: my_rank, n_ranks, root
-    type(MPI_Comm) :: comm = MPI_COMM_WORLD
+    type(MPI_Comm) :: comm
     integer, allocatable :: rbuf(:), sbuf(:)
     integer :: i, s
 
     call MPI_Init()
+    comm = MPI_COMM_WORLD
     call MPI_Comm_size(comm, n_ranks)
     call MPI_Comm_rank(comm, my_rank)
 

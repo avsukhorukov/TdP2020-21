@@ -18,9 +18,10 @@ program ring_factorial
     integer :: my_rank, n_ranks, src, dst, tag
     integer :: factorial
     type(MPI_Status) :: status
-    type(MPI_Comm) :: comm = MPI_COMM_WORLD
+    type(MPI_Comm) :: comm
 
     call MPI_Init()
+    comm = MPI_COMM_WORLD
     call MPI_Comm_rank(comm, my_rank)
     call MPI_Comm_size(comm, n_ranks)
 
