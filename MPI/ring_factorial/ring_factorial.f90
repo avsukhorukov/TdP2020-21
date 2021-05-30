@@ -22,6 +22,7 @@ program ring_factorial
 
     call MPI_Init()
     comm = MPI_COMM_WORLD
+    status = MPI_STATUS_IGNORE
     call MPI_Comm_rank(comm, my_rank)
     call MPI_Comm_size(comm, n_ranks)
 
